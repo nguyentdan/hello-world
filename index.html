@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM</title>
+    <link rel="stylesheet" href="main.css">
+
+</head>
+<body>
+    <h1 id="h1">BOM</h1>
+    <div id="info"></div>
+
+    <p id="p">this is a paragraph which be will styled with 'primary' class</p>
+
+    <pre id="css">content of css</pre>
+
+    <button style="background-color: #da2;" onclick="toggleStyle()">toggle css</button>
+    <script>
+        h1.style.color = 'orange';
+        h1.innerText = 'Browser Object Model';
+
+        var style = document.createElement('style');
+        style.type = 'text/css';
+        style.innerHTML = '.primary { color: #da2; }';
+        document.head.appendChild(style);
+
+        p.className = 'primary';
+
+        var ss = document.styleSheets[0];
+        console.log('cssRules:', ss.cssRules);
+
+        var rules = '';
+        for (var idx in ss.rules)
+            rules += ss.rules[idx].cssText + '<br>';
+        
+        
+        css.innerHTML = rules;
+
+        var cssDisabled = false;
+        function toggleStyle() {
+            cssDisabled = !cssDisabled;
+            document.styleSheets[0].disabled = cssDisabled;
+        }
+    </script>
+</body>
+
+<script src="main.js"></script>
+</html>
